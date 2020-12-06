@@ -6,8 +6,6 @@
         First Page!
     </title>
     <link rel="stylesheet" href="chat.css">
-    <!-- the second stylesheet is for the search icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"
         integrity="sha512-Jr0UIR/Q8MUX+93zjDOhuDUKLqJZObtwpkLJQcR9qMaLgL0thet39IORuavUaZFkZ8a4ktrUsKPM9mf5LWMduA=="
@@ -18,9 +16,9 @@
     <div class="divider">
         <div id="search-form" class="center">
             <h1>send message</h1>
-            <input id="name" class="form-control" placeholder="Name">
+            <input id="name" class="form-control" placeholder="Name" autocomplete="off">
             <br>
-            <textarea id="content" class="form-control" placeholder="Your Message Here or 'clearMessages()' to clear message history"></textarea>
+            <textarea id="content" class="form-control" placeholder="Your Message Here or 'clearMessages()' to clear message history" autocomplete="off"></textarea>
             <br>
             <button id="send" class="btn btn-success">Send</button>
         </div>

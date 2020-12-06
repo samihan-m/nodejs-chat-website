@@ -34,7 +34,8 @@ input, textarea {
 #message-log {
   display: flex;
   flex-direction: column;
-  height: 60vh;
+  height: 70vh;
+  font-size: 1.3em;
   overflow-y: scroll;
 }
 
