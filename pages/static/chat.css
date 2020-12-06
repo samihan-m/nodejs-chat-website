@@ -1,0 +1,77 @@
+body {
+  background-color: #222222;
+  color: #eeeeee;
+}
+
+.center {
+  margin: 0;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#search-form {
+  width: 95%;
+}
+#search-form * {
+  font-size: 2em;
+  width: 100%;
+}
+
+input, textarea {
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#message-log {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+.message {
+  color: white;
+  text-align: center;
+  border: 1px solid cyan;
+  width: 99%;
+  display: inline-block;
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+.divider {
+  display: block;
+}
+
+.message-username {
+  display: block;
+  text-align: left; 
+  padding-left: 1.5em;
+  font-weight: bold;
+}
+
+.message-content {
+  display: block;
+  text-align: left;
+  padding-left: 2.5em;
+  padding-top: 0.4em;
+}
+
+.message-date {
+  display: block;
+  text-align: right;
+  padding-right: 2.5em;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        First Page!
+    </title>
+    <link rel="stylesheet" href="chat.css">
+    <!-- the second stylesheet is for the search icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"
+        integrity="sha512-Jr0UIR/Q8MUX+93zjDOhuDUKLqJZObtwpkLJQcR9qMaLgL0thet39IORuavUaZFkZ8a4ktrUsKPM9mf5LWMduA=="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="divider">
+        <div id="search-form" class="center">
+            <h1>send message</h1>
+            <input id="name" class="form-control" placeholder="Name">
+            <br>
+            <textarea id="content" class="form-control" placeholder="Your Message Here or 'clearMessages()' to clear message history"></textarea>
+            <br>
+            <button id="send" class="btn btn-success">Send</button>
+        </div>
+        <br>
+        <br>
+        <div id="message-log" class="center"></div>
+    </div>
+    <script>
+        var socket = io();
+        $(() => {
+            $("#send").click(() => {
+                let now = new Date();
+                let name = $("#name").val();
+                let message = $("#content").val();
+                if(message == "clearMessages()") {  //clears the user's message history view
+                    $("#message-log").empty();
+                }
+                else {
+                    sendMessage({ userID: name, content: message, date: now, wasEdited: false, editDate: now });
+                }
+                $("#content").val(''); //clears the text area after sending the message.
+            })
+
+            getMessages()
+        })
+
+        socket.on('message', addMessages)
+
+        function addMessages(message) {
+            let date = new Date(message.date);
+            let time = date.toLocaleTimeString();
+            let hour = date.getHours();
+            let minute = date.getMinutes();
+            let day = date.toDateString();
+            $("#message-log").append(`<div class="message"> <span class="message-username">${message.userID}</span> <span class="message-content">${message.content}</span> <span class="message-date">${time} ${day}</span> </div>`)
+        }
+
+        function getMessages() {
+            $.get('/messages', (data) => {
+                data.forEach(addMessages);
+            })
+        }
+
+        function sendMessage(message) {
+            $.post('/messages', message)
+        }
+
+    </script>
+</body>
+
+</html>
